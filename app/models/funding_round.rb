@@ -1,4 +1,6 @@
 class FundingRound
+  # work on associations
+
   attr_reader :startup, :venture_capitalist, :type, :investment
   @@all = []
 

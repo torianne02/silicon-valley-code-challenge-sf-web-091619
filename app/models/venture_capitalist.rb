@@ -1,4 +1,6 @@
 class VentureCapitalist
+  # work on associations
+
   attr_reader :name, :total_worth
   @@all = []
 

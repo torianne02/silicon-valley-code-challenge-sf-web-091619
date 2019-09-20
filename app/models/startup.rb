@@ -1,4 +1,6 @@
 class Startup
+  has_many :venture_capitalists, through: :funding_round
+
   attr_accessor :name, :domain
   attr_reader :founder
 
