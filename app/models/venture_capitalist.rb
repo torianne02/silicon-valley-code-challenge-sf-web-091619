@@ -1,5 +1,6 @@
 class VentureCapitalist
-  # work on associations
+  # has_many :funding_rounds
+  # has_many :startups, through: :funding_rounds
 
   attr_reader :name, :total_worth
   @@all = []
