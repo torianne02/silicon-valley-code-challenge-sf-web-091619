@@ -1,6 +1,5 @@
 class Startup
-  attr_accessor :name, :domain
-  attr_reader :founder
+  attr_reader :name, :domain, :founder
 
   @@all = []
 
@@ -8,16 +7,13 @@ class Startup
     @name = name
     @domain = domain 
     @founder = founder 
+    
     @@all << self
   end 
 
   def self.all 
     @@all 
   end 
-
-  # def domain=(domain) 
-  #   @domain = domain
-  # end 
 
   def pivot(domain, name)
     @domain = domain
@@ -65,15 +61,3 @@ class Startup
     return triple_comma_club
   end
 end
-
-
-# ------------ TEST CODE / VARIABLES ------------
-
-# flatiron = Startup.new("Flatiron", "education", "Avi")
-# general_assembly = Startup.new("General Assembly", "education", "Adam")
-# mark_cuban = VentureCapitalist.new("Mark Cuban", 1300000000)
-# mr_wonderful = VentureCapitalist.new("Mr. Wonderful", 13000000000000)
-# flatiron.sign_contract("Mark Cuban", "Pre-Seed", 12000)
-# flatiron.sign_contract("Mark Cuban", "Seed", 5000)
-# flatiron.sign_contract("Mr. Wonderful", "Seed", 70000)
-# mark_cuban.offer_contract("General Assembly", "Seed", 35000)
