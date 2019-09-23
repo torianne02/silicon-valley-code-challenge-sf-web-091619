@@ -1,7 +1,4 @@
 class FundingRound
-  # belongs_to :startup
-  # belongs_to :venture_capitalist
-
   attr_reader :startup, :venture_capitalist, :type, :investment
   @@all = []
 

@@ -44,6 +44,11 @@ class Startup
   def total_funds 
     total_funds = 0
     FundingRound.all.collect { |round| total_funds += round.investment if round.startup == self.name }
+
+    if round.startup == self.name
+      total_funds += round.investment 
+    end 
+    
     return total_funds
   end
 
@@ -60,8 +65,6 @@ class Startup
     return triple_comma_club
   end
 end
-
-
 
 # flatiron = Startup.new("Flatiron", "education", "Avi")
 # mark_cuban = VentureCapitalist.new("Mark Cuban", 1300000000)
