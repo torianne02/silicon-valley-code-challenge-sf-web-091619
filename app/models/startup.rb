@@ -29,35 +29,32 @@ class Startup
   end 
 
   def sign_contract(venture_capitalist, type, total_invested)
-    FundingRound.new(@name, venture_capitalist, type, total_invested)
+    FundingRound.new(self, venture_capitalist, type, total_invested)
   end
 
   def num_funding_rounds
-    arr = FundingRound.all.collect { |round| round.startup == self.name }
-    return arr.size
+    return my_funding_rounds.size
   end
 
   def total_funds 
     total_funds = 0
-    FundingRound.all.collect { |round| total_funds += round.investment if round.startup == self.name }
-
-    if round.startup == self.name
-      total_funds += round.investment 
-    end 
+    my_funding_rounds.map { |round| total_funds += round.investment }
 
     return total_funds
   end
 
   def investors 
     investors = Set.new()
-    FundingRound.all.collect {|round| investors << round.venture_capitalist if round.startup == self.name }
+    my_funding_rounds.map { |round| investors << round.venture_capitalist }
     return investors.to_a
   end 
 
   def big_investors 
-    investors = self.investors
-    triple_comma_club = []
-    investors.collect { |investor| triple_comma_club << investor if VentureCapitalist.tres_commas_club.map { |capitalist| capitalist.name }.include?(investor) }
-    return triple_comma_club
+    investors.select { |investor| VentureCapitalist.tres_commas_club.include?(investor) }
   end
+
+  # HELPER METHOD
+  def my_funding_rounds
+    FundingRound.all.select { |round| round.startup == self }
+  end 
 end
