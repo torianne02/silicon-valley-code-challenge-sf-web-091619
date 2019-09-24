@@ -16,6 +16,7 @@ mr_wonderful = VentureCapitalist.new("Mr. Wonderful", 13000000000000)
 flatiron.sign_contract(mark_cuban, "Pre-Seed", 12000)
 flatiron.sign_contract(mark_cuban, "Seed", 5000)
 flatiron.sign_contract(mr_wonderful, "Seed", 70000)
+general_assembly.sign_contract(mr_wonderful, "Pre-Seed", 557493)
 mark_cuban.offer_contract(general_assembly, "Seed", 35000)
 
 binding.pry

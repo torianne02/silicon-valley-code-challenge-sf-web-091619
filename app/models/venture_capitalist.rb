@@ -20,37 +20,29 @@ class VentureCapitalist
   end 
 
   def offer_contract(startup, type, amount_invested)
-    FundingRound.new(startup, self.name, type, amount_invested)
+    FundingRound.new(startup, self, type, amount_invested)
   end
 
-  def funding_roungs
-    arr = FundingRound.all.collect { |round| round.venture_capitalist == self.name }
-    return arr.size
+  def funding_rounds
+    my_funding_rounds.size
   end 
 
   def portfolio 
     startups = Set.new()
-    FundingRound.all.collect { |round| startups << round.startup if round.venture_capitalist == self.name }
+    my_funding_rounds.map { |round| startups << round.startup }
     return startups.to_a
   end 
 
   def biggest_investment 
-    highest = 0
-    FundingRound.all.map { |round| 
-      if round.venture_capitalist == @name && round.investment > highest
-        highest = round.investment
-      end
-      }
-    return highest
+    my_funding_rounds.max_by { |round| round.investment }
   end 
 
   def invested(domain)
-    total_invested = 0
-    FundingRound.all.map { |round| 
-      if Startup.all.select { |s| s.name == round.startup }[0].domain == domain && round.venture_capitalist == @name
-        total_invested += round.investment
-      end 
-    }
-    return total_invested
+    my_funding_rounds.sum { |round| round.investment if round.startup.domain == domain }
   end 
+
+  # HELPER METHODS
+  def my_funding_rounds
+    FundingRound.all.select { |round| round.venture_capitalist == self }
+  end
 end
