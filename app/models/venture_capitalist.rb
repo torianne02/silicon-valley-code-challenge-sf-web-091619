@@ -15,7 +15,7 @@ class VentureCapitalist
 
   def self.tres_commas_club
     tres_commas_club = []
-    @@all.collect { |v| tres_commas_club << v if v.total_worth >= 1000000000 }
+    @@all.collect { |vc| tres_commas_club << vc if vc.total_worth >= 1000000000 }
     return tres_commas_club
   end 
 

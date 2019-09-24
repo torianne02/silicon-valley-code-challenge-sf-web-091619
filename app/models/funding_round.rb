@@ -6,7 +6,12 @@ class FundingRound
     @startup = startup
     @venture_capitalist = venture_capitalist
     @type = type
-    @investment = investment
+    
+    if investment < 0
+      @investment = 0
+    else 
+      @investment = investment.to_f
+    end 
 
     @@all << self
   end
